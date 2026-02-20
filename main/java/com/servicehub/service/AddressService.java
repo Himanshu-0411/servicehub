@@ -70,7 +70,7 @@ public class AddressService {
         addressRepository.save(address);
         return AddressResponse.from(address);
     }
-
+// for deleting the addresses 
     @Transactional
     public void deleteAddress(Long userId, Long addressId) {
         Address address = addressRepository.findById(addressId)
@@ -80,4 +80,5 @@ public class AddressService {
         }
         addressRepository.delete(address);
     }
+
 }
