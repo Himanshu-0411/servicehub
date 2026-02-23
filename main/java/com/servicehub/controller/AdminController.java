@@ -1,7 +1,9 @@
 package com.servicehub.controller;
 
+import com.servicehub.dto.PaymentDTOs;
 import com.servicehub.dto.ServiceHubDTOs.*;
 import com.servicehub.service.AdminService;
+import com.servicehub.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +19,10 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     private final AdminService adminService;
+    PaymentService paymentService;
 
     @GetMapping("/stats")
     public ResponseEntity<AdminStats> getStats() {
-
         return ResponseEntity.ok(adminService.getDashboardStats());
     }
 
@@ -65,5 +67,11 @@ public class AdminController {
     public ResponseEntity<ApiResponse> toggleCategory(@PathVariable Long id) {
         adminService.toggleCategory(id);
         return ResponseEntity.ok(ApiResponse.ok("Category status updated"));
+    }
+
+    @PostMapping("/bookings/{bookingId}/refund")
+    public ResponseEntity<PaymentDTOs.PaymentResponse> refundBooking(@PathVariable Long bookingId) {
+
+        return ResponseEntity.ok(paymentService.refundPayment(bookingId));
     }
 }
