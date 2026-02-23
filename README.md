@@ -4,7 +4,7 @@ ServiceHub makes it easy to:
 
 Let users explore and book services
 
-Allow service providers to manage what they offer
+Allow service providers to manage what they offer.
 
 Give admins full control over the platform
 
